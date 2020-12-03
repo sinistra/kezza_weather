@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kezza_weather/model/WeatherData.dart';
 
 class Weather extends StatelessWidget {
+
+  final WeatherData weatherData;
+  Weather({@required this.weatherData});
+
   @override
   Widget build(BuildContext context) {
 
@@ -24,7 +29,8 @@ class Weather extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '20',
+            // '20',
+            weatherData.temp.toStringAsFixed(0),
             style: TextStyle(
               fontSize: 80.0,
             ),
@@ -45,8 +51,9 @@ class Weather extends StatelessWidget {
               ),
             ),
           ),
-          Image.asset(
-            'assets/img/cloudy.png',
+          Image.network(
+            'https://openweathermap.org/img/w/${weatherData.icon}.png',
+            // 'assets/img/cloudy.png',
             width: 100.0,
             height: 100.0,
             fit: BoxFit.cover,
@@ -61,7 +68,8 @@ class Weather extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Tokyo',
+            // 'Tokyo',
+            weatherData.name,
             style: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
@@ -69,7 +77,8 @@ class Weather extends StatelessWidget {
             ),
           ),
           Text(
-            'Cloudy',
+            // 'Cloudy',
+            weatherData.main,
             style: TextStyle(
               fontSize: 24.0,
               color: Colors.white,
