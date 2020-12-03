@@ -4,8 +4,7 @@ import 'package:kezza_weather/constants.dart';
 
 class MapApi {
 
-  // Add your http://openweathermap.org api key here
-  // static const _apiKey = '45b68e6b5f449f67591588960fbf7e30';
+  // Add your http://openweathermap.org api key here - it's stored in the constants file
   static const _endpoint = 'http://api.openweathermap.org/data/2.5';
   double lat, lon;
   Client client = Client();
