@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+// import 'package:kezza_weather/api/LocationApi.dart';
 import 'package:kezza_weather/api/MapApi.dart';
 import 'package:kezza_weather/model/WeatherData.dart';
 import 'package:kezza_weather/ui/weather.dart';
@@ -39,8 +41,13 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  getCurrentLocation() {
-    loadWeather(lat: -33.72765, lon: 151.17382);
+  getCurrentLocation() async {
+    final position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+        forceAndroidLocationManager: true);
+    print(position);
+    loadWeather(lat: position.latitude, lon: position.longitude);
+    // loadWeather(lat: -33.72765, lon: 151.17382);
   }
 
   loadWeather({double lat, double lon}) async {
